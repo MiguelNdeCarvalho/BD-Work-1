@@ -9,7 +9,7 @@ Create table motorista(
 Create table telefone(
     Nbi integer,
     Telefone integer,
-    foreign key (Nbi) references motorista on delete restrict
+    foreign key (Nbi) references motorista(Nbi) on delete cascade
 );
 
 Create table modelo(
@@ -25,7 +25,7 @@ Create table taxi(
     Kms integer,
     Matricula char(8),
     primary key (Modelo,Matricula),
-    foreign key (Modelo) references modelo on delete restrict
+    foreign key (Modelo) references modelo(Modelo) on delete cascade
 );
 
 Create table servico(
@@ -36,7 +36,7 @@ Create table servico(
     Matricula char(8),
     CoordGPSInic char(4),
     CoordGPSFin char(4),
-    foreign key (Matricula) references taxi on delete restrict
+    foreign key (Matricula) references taxi(Matricula) on delete cascade
 );
 
 Create table turno(
@@ -46,8 +46,8 @@ Create table turno(
     KmFim integer,
     Matricula char(8),
     Nbi integer,
-    foreign key (Matricula) references taxi on delete restrict,
-    foreign key (Nbi) references motorista on delete restrict
+    foreign key (Matricula) references taxi(Matricula) on delete cascade,
+    foreign key (Nbi) references motorista(Nbi) on delete cascade
 );
 
 
@@ -65,6 +65,6 @@ Create table pedido(
     CodigoPostalInicio varchar(20),
     DataPedido char(20),
     DataInicio char(20),
-    foreign key (Nif) references cliente on delete restrict,
-    foreign key (Matricula) references taxi on delete restrict    
+    foreign key (Nif) references cliente(Nif) on delete cascade,
+    foreign key (Matricula) references taxi(Matricula) on delete cascade    
 );
