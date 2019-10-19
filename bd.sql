@@ -1,7 +1,7 @@
 Create table motorista(
     Nome VARCHAR(10),
-    NCartaCond CHAR(5),
-    DataNasc CHAR(10),
+    NCartaCond VARCHAR(10),
+    DataNasc DATE,
     Nbi INTEGER,
     PRIMARY KEY (Nbi, NCartaCond),
     UNIQUE (Nbi)
@@ -58,12 +58,12 @@ Create table cliente(
     Nome VARCHAR(20),
     Morada VARCHAR(40),
     CodigoPostal VARCHAR(20),
-    Nif INTEGER,
+    Nif BIGINT,
     UNIQUE(Nif)
 );
 
 Create table pedido(
-    Nif INTEGER,
+    Nif BIGINT,
     MoradaInicio VARCHAR(50),
     CodigoPostalInicio VARCHAR(20),
     DataPedido CHAR(20),
