@@ -35,7 +35,7 @@ Create table servico(
     DataInicio CHAR(20),
     DataFim CHAR(20),
     Kms INTEGER,
-    Valor INTEGER,
+    Valor FLOAT,
     Matricula CHAR(8),
     CoordGPSInic CHAR(4),
     CoordGPSFin CHAR(4),
