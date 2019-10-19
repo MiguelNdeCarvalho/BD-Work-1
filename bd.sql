@@ -1,9 +1,9 @@
 Create table motorista(
-    Nbi INTEGER,
-    CartCond CHAR(5),
     Nome VARCHAR(10),
+    NCartCond CHAR(5),
     DataNasc CHAR(10),
-    PRIMARY KEY (Nbi, CartCond),
+    Nbi INTEGER,
+    PRIMARY KEY (Nbi, NCartCond),
     UNIQUE (Nbi)
 );
 
@@ -14,8 +14,8 @@ Create table telefone(
 );
 
 Create table modelo(
-    Modelo VARCHAR(20) PRIMARY KEY,
     Marca VARCHAR(20),
+    Modelo VARCHAR(20) PRIMARY KEY,
     NLugares INTEGER,
     Consumo INTEGER,
     UNIQUE (Modelo)
@@ -64,10 +64,10 @@ Create table cliente(
 
 Create table pedido(
     Nif INTEGER,
-    Matricula CHAR(8),
     MoradaInicio VARCHAR(50),
     CodigoPostalInicio VARCHAR(20),
     DataPedido CHAR(20),
+    Matricula CHAR(8),
     DataInicio CHAR(20),
     foreign key (Nif) references cliente(Nif) on delete cascade,
     foreign key (Matricula) references taxi(Matricula) on delete cascade    
