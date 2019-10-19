@@ -1,5 +1,5 @@
 Create table motorista(
-    Nome VARCHAR(10),
+    Nome VARCHAR(30),
     NCartaCond VARCHAR(10),
     DataNasc DATE,
     Nbi INTEGER,
@@ -55,7 +55,7 @@ Create table turno(
 
 
 Create table cliente(
-    Nome VARCHAR(20),
+    Nome VARCHAR(30),
     Morada VARCHAR(40),
     CodigoPostal VARCHAR(20),
     Nif BIGINT,
@@ -72,3 +72,4 @@ Create table pedido(
     foreign key (Nif) references cliente(Nif) on delete cascade,
     foreign key (Matricula) references taxi(Matricula) on delete cascade    
 );
+
