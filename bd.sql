@@ -17,7 +17,7 @@ Create table modelo(
     Marca VARCHAR(20),
     Modelo VARCHAR(20) PRIMARY KEY,
     NLugares INTEGER,
-    Consumo INTEGER,
+    Consumo FLOAT,
     UNIQUE (Modelo)
 );
 
