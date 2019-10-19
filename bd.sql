@@ -1,70 +1,74 @@
 Create table motorista(
-    NCartCond char(5),
-    Nbi integer,
-    Nome varchar(10),
-    DataNasc char(10),
-    primary key (NCartCond, Nbi)
+    Nbi INTEGER,
+    CartCond CHAR(5),
+    Nome VARCHAR(10),
+    DataNasc CHAR(10),
+    PRIMARY KEY (Nbi, CartCond),
+    UNIQUE (Nbi)
 );
 
 Create table telefone(
-    Nbi integer,
-    Telefone integer,
+    Nbi INTEGER,
+	Telefone INTEGER,
     foreign key (Nbi) references motorista(Nbi) on delete cascade
 );
 
 Create table modelo(
-    Modelo varchar(20) primary key,
-    Marca varchar(20),
-    NLugares integer,
-    Consumo integer
+    Modelo VARCHAR(20) PRIMARY KEY,
+    Marca VARCHAR(20),
+    NLugares INTEGER,
+    Consumo INTEGER,
+    UNIQUE (Modelo)
 );
 
 Create table taxi(
-    Modelo varchar(20),
-    Ano integer,
-    Kms integer,
-    Matricula char(8),
-    primary key (Modelo,Matricula),
-    foreign key (Modelo) references modelo(Modelo) on delete cascade
+    Modelo VARCHAR(20),
+    Ano INTEGER,
+    Kms INTEGER,
+    Matricula CHAR(8),
+    PRIMARY KEY (Modelo,Matricula),
+    foreign key (Modelo) references modelo(Modelo) on delete cascade,
+    UNIQUE(Matricula)
 );
 
 Create table servico(
-    DataInicio char(20),
-    DataFim char(20),
-    Kms integer,
-    Valor integer,
-    Matricula char(8),
-    CoordGPSInic char(4),
-    CoordGPSFin char(4),
+    DataInicio CHAR(20),
+    DataFim CHAR(20),
+    Kms INTEGER,
+    Valor INTEGER,
+    Matricula CHAR(8),
+    CoordGPSInic CHAR(4),
+    CoordGPSFin CHAR(4),
     foreign key (Matricula) references taxi(Matricula) on delete cascade
 );
 
 Create table turno(
-    DataInicio char(20),
-    DataFim char(20),
-    KmInicio integer,
-    KmFim integer,
-    Matricula char(8),
-    Nbi integer,
+    DataInicio CHAR(20),
+    DataFim CHAR(20),
+    KmInicio INTEGER,
+    KmFim INTEGER,
+    Matricula CHAR(8),
+    Nbi INTEGER,
     foreign key (Matricula) references taxi(Matricula) on delete cascade,
     foreign key (Nbi) references motorista(Nbi) on delete cascade
 );
 
 
 Create table cliente(
-    Nome varchar(20),
-    Morada varchar(40),
-    CodigoPostal varchar(20),
-    Nif integer
+    Nome VARCHAR(20),
+    Morada VARCHAR(40),
+    CodigoPostal VARCHAR(20),
+    Nif INTEGER,
+    UNIQUE(Nif)
 );
 
 Create table pedido(
-    Nif integer,
-    Matricula char(8),
-    MoradaInicio varchar(50),
-    CodigoPostalInicio varchar(20),
-    DataPedido char(20),
-    DataInicio char(20),
+    Nif INTEGER,
+    Matricula CHAR(8),
+    MoradaInicio VARCHAR(50),
+    CodigoPostalInicio VARCHAR(20),
+    DataPedido CHAR(20),
+    DataInicio CHAR(20),
     foreign key (Nif) references cliente(Nif) on delete cascade,
     foreign key (Matricula) references taxi(Matricula) on delete cascade    
 );
