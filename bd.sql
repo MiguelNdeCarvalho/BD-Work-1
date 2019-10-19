@@ -9,7 +9,7 @@ Create table motorista(
 
 Create table telefone(
     Nbi INTEGER,
-	Telefone INTEGER,
+	Telefone VARCHAR(50),
     foreign key (Nbi) references motorista(Nbi) on delete cascade
 );
 
