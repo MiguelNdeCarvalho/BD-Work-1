@@ -1,9 +1,9 @@
 Create table motorista(
     Nome VARCHAR(10),
-    NCartCond CHAR(5),
+    NCartaCond CHAR(5),
     DataNasc CHAR(10),
     Nbi INTEGER,
-    PRIMARY KEY (Nbi, NCartCond),
+    PRIMARY KEY (Nbi, NCartaCond),
     UNIQUE (Nbi)
 );
 
