@@ -191,9 +191,9 @@ VALUES
       '600700800900',
       'Rua Silva Pais 33',
       '7120-212 Évora',
-      '2/1/2016 às 9:00',
+      '2/1/2016 9:00',
       '19-AA-22',
-      '2/1/2016 às 8:43'
+      '2/1/2016 8:43'
    );
 
 ------------------------
@@ -202,8 +202,8 @@ VALUES
 INSERT INTO turno(DataInicio, DataFim, KmInicio, KmFim, Matricula, Nbi)
 VALUES
    (
-      '2/1/2016 às 8:00',
-      '2/1/2016 às 17:00',
+      '2/1/2016 8:00',
+      '2/1/2016 17:00',
       '79744',
       '79944',
       '19-AA-22',
@@ -214,8 +214,8 @@ VALUES
 INSERT INTO turno(DataInicio, DataFim, KmInicio, KmFim, Matricula, Nbi)
 VALUES
    (
-      '2/1/2016 às 8:00',
-      '2/1/2016 às 17:00',
+      '2/1/2016 8:00',
+      '2/1/2016 17:00',
       '89764',
       '89964',
       '20-AA-22',
@@ -226,8 +226,8 @@ VALUES
 INSERT INTO turno(DataInicio, DataFim, KmInicio, KmFim, Matricula, Nbi)
 VALUES
    (
-      '3/1/2016 às 8:00',
-      '3/1/2016 às 17:00',
+      '3/1/2016 8:00',
+      '3/1/2016 17:00',
       '234554',
       '234954',
       '21-AA-22',
@@ -238,8 +238,8 @@ VALUES
 INSERT INTO turno(DataInicio, DataFim, KmInicio, KmFim, Matricula, Nbi)
 VALUES
    (
-      '3/1/2016 às 8:00',
-      '3/1/2016 às 17:00',
+      '3/1/2016 8:00',
+      '3/1/2016 17:00',
       '123098',
       '123498',
       '22-AA-22',
@@ -264,8 +264,8 @@ VALUES
 INSERT INTO servico(DataInicio,DataFim,Kms,Valor,Matricula,CoordGPSInic,CoordGPSFin)
 VALUES
    (
-       '2/1/2016 às 8:12',
-       '2/1/2016 às 8:32',
+       '2/1/2016 8:12',
+       '2/1/2016 8:32',
        '12',
        '5.25',
        '19-AA-22',
@@ -277,8 +277,8 @@ VALUES
 INSERT INTO servico(DataInicio,DataFim,Kms,Valor,Matricula,CoordGPSInic,CoordGPSFin)
 VALUES
    (
-       '2/1/2016 às 8:43',
-       '2/1/2016 às 8:52',
+       '2/1/2016 8:43',
+       '2/1/2016 8:52',
        '7',
        '3.25',
        '19-AA-22',
@@ -290,8 +290,8 @@ VALUES
 INSERT INTO servico(DataInicio,DataFim,Kms,Valor,Matricula,CoordGPSInic,CoordGPSFin)
 VALUES
    (
-       '2/1/2016 às 8:53',
-       '2/1/2016 às 9:59',
+       '2/1/2016 8:53',
+       '2/1/2016 9:59',
        '98',
        '53.25',
        '19-AA-22',
@@ -303,8 +303,8 @@ VALUES
 INSERT INTO servico(DataInicio,DataFim,Kms,Valor,Matricula,CoordGPSInic,CoordGPSFin)
 VALUES
    (
-       '2/1/2016 às 10:13',
-       '2/1/2016 às 10:29',
+       '2/1/2016 10:13',
+       '2/1/2016 10:29',
        '18',
        '19.25',
        '19-AA-22',
@@ -316,8 +316,8 @@ VALUES
 INSERT INTO servico(DataInicio,DataFim,Kms,Valor,Matricula,CoordGPSInic,CoordGPSFin)
 VALUES
    (
-       '2/1/2016 às 11:10' ,
-       '2/1/2016 às 11:39',
+       '2/1/2016 11:10' ,
+       '2/1/2016 11:39',
        '23',
        '22.25',
        '19-AA-22',
@@ -329,8 +329,8 @@ VALUES
 INSERT INTO servico(DataInicio,DataFim,Kms,Valor,Matricula,CoordGPSInic,CoordGPSFin)
 VALUES
    (
-       '2/1/2016 às 12:00' ,
-       '2/1/2016 às 13:39',
+       '2/1/2016 12:00' ,
+       '2/1/2016 13:39',
        '21',
        '42.25',
        '19-AA-22',
@@ -342,8 +342,8 @@ VALUES
 INSERT INTO servico(DataInicio,DataFim,Kms,Valor,Matricula,CoordGPSInic,CoordGPSFin)
 VALUES
    (
-       '2/1/2016 às 15:20' ,
-       ' 2/1/2016 às 15:39',
+       '2/1/2016 15:20' ,
+       ' 2/1/2016 15:39',
        '9',
        '12.25',
        '19-AA-22',
