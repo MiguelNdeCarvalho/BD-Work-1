@@ -30,7 +30,7 @@ except
 select motorista.Nome from motorista,taxi,turno,modelo
 where turno.Nbi=motorista.Nbi and turno.Matricula=taxi.Matricula and taxi.Modelo=modelo.Modelo and marca='Mercedes'
 
---g FAZER
+--g FAZER----------------------------
 
 
 select distinct s.Nome
@@ -57,14 +57,16 @@ where turno.Nbi=motorista.Nbi and turno.Matricula=taxi.Matricula and servico.Mat
 --j 
 
 WITH x as (SELECT motorista.Nome, turno.DataInicio as T_Inicio, turno.DataFim as T_Fim,servico.DataInicio as S_Inicio, servico.DataFim as S_Fim, servico.Valor FROM motorista, turno, servico,taxi 
-    WHERE servico.Matricula=turno.Matricula and turno.Nbi=motorista.Nbi and servico.Matricula = taxi.Matricula)
+    WHERE servico.Matricula=turno.Matricula and turno.Nbi=motorista.Nbi and servico.Matricula = taxi.Matricula),
+
+y as (SELECT x.Nome,sum(valor) as valor FROM x GROUP BY  x.Nome)
 
 SELECT
-    x.Nome, x.T_Inicio,sum(valor) 
-FROM 
-    x 
-GROUP BY  x.Nome,x.T_Inicio
-
+    y.Nome, y.Valor
+FROM
+    y
+WHERE
+    y.Valor=(SELECT max(y.Valor) FROM y)
 
 
 --k 
@@ -104,8 +106,28 @@ WHERE
     VporKM=(SELECT max(VporKm) FROM x)
 
 
---o FAZER
+--o
+WITH x as (SELECT motorista.Nome, servico.Kms,turno.DataInicio ,(turno.KmFim - turno.KmInicio) as t_Kms FROM motorista, servico, taxi, turno WHERE motorista.Nbi=turno.Nbi and taxi.Matricula=servico.Matricula and taxi.Matricula=turno.Matricula),
+
+y as (SELECT x.Nome,x.DataInicio, sum(x.Kms) as tot_serv FROM x GROUP BY  x.Nome,x.DataInicio)
+
+SELECT 
+	DISTINCT x.Nome, x.t_Kms-y.tot_serv
+FROM 
+    y NATURAL JOIN x
+
 
 
 --p FAZER
 
+WITH x as (1)
+
+SELECT
+    x.Nome    
+FROM
+
+WHERE
+SELECT
+    x.Nome, t_Kms-
+FROM 
+    y 
