@@ -51,6 +51,11 @@ where turno.Nbi=motorista.Nbi and servico.Matricula=turno.Matricula and turno.Nb
 --j
 
 --k
+select x.matricula,x.marca,x.modelo,max(x.dist) from(
+
+    select matricula,marca,modelo,(KmFim-KmInicio) as dist from turno natural join taxi natural join modelo) as x
+
+group by x.matricula,x.marca,x.modelo
 
 --l
 
@@ -62,15 +67,20 @@ select avg(servico.DataInicio-pedido.DataInicio)
 
 
 --m
+select x.Nome,max(n_pedidos) from
+
+    (select cliente.Nome,count(pedido.Nif) as n_pedidos from cliente,pedido
+    where cliente.Nif=pedido.Nif group by Nome) as x 
+
+group by x.Nome
 
 --n
-select taxi.Matricula,taxi.Modelo,Marca,max(servico.Valor/servico.Kms)
-from (
-select taxi.Matricula,taxi.Modelo,Marca,servico.Valor/servico.Kms
-from taxi,servico,modelo
-where taxi.Matricula=Matricula and taxi.Modelo=modelo.Modelo ) as x
+select x.Matricula,x.Modelo,x.Marca,max(VporKm) from
 
---nao tou capaz
+    (select taxi.Matricula,taxi.Modelo,Marca,(servico.Valor/servico.Kms) as VporKm from taxi,servico,modelo
+    where taxi.Matricula=servico.Matricula and taxi.Modelo=modelo.Modelo) as x 
+
+group by x.Matricula,x.Modelo,x.Marca
 
 
 --o
