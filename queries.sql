@@ -54,7 +54,18 @@ select Nome, sum(Valor) from servico,turno,taxi,motorista
 where turno.Nbi=motorista.Nbi and turno.Matricula=taxi.Matricula and servico.Matricula=turno.Matricula and turno.Nbi=motorista.Nbi group by Nome
 
 
---j FAZER
+--j 
+
+WITH x as (SELECT motorista.Nome, turno.DataInicio as T_Inicio, turno.DataFim as T_Fim,servico.DataInicio as S_Inicio, servico.DataFim as S_Fim, servico.Valor FROM motorista, turno, servico,taxi 
+    WHERE servico.Matricula=turno.Matricula and turno.Nbi=motorista.Nbi and servico.Matricula = taxi.Matricula)
+
+SELECT
+    x.Nome, x.T_Inicio,sum(valor) 
+FROM 
+    x 
+GROUP BY  x.Nome,x.T_Inicio
+
+
 
 --k 
 WITH x as (SELECT taxi.Matricula, modelo.Marca, taxi.Modelo, (turno.KmFim - turno.KmInicio) as Distance from turno, taxi, modelo
@@ -67,11 +78,11 @@ WHERE
     Distance=(SELECT max(Distance) FROM x)
 
 
---l
+--l                                                           
 select avg(servico.DataInicio-pedido.DataInicio)
 from servico, pedido
 
---m FAZER
+--m
 WITH x as (select cliente.Nome,count(pedido.Nif) as n_pedidos from cliente,pedido
     where cliente.Nif=pedido.Nif group by Nome)
 SELECT 
@@ -82,18 +93,19 @@ WHERE
     n_pedidos=(SELECT max(n_pedidos) FROM x)
 
 
-
-
---n FAZER
-select x.Matricula,x.Modelo,x.Marca,max(VporKm) from
-
-    (select taxi.Matricula,taxi.Modelo,Marca,(servico.Valor/servico.Kms) as VporKm from taxi,servico,modelo
-    where taxi.Matricula=servico.Matricula and taxi.Modelo=modelo.Modelo) as x 
-
-group by x.Matricula,x.Modelo,x.Marca
+--n 
+WITH x as (select taxi.Matricula,taxi.Modelo,Marca,(servico.Valor/servico.Kms) as VporKm from taxi,servico,modelo
+    where taxi.Matricula=servico.Matricula and taxi.Modelo=modelo.Modelo)
+SELECT 
+    matricula,modelo,marca,VporKm
+FROM
+    x
+WHERE
+    VporKM=(SELECT max(VporKm) FROM x)
 
 
 --o FAZER
+
 
 --p FAZER
 
