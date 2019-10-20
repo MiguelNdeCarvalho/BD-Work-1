@@ -30,13 +30,19 @@ except
 select motorista.Nome from motorista,taxi,turno,modelo
 where turno.Nbi=motorista.Nbi and turno.Matricula=taxi.Matricula and taxi.Modelo=modelo.Modelo and marca='Mercedes'
 
---g
+--g FAZER
 
 
-select motorista.Nome from motorista
-where not exists ()
-
---nao tou capaz
+select distinct s.Nome
+from motorista as s, taxi, servico, modelo
+Except (
+	select Nome
+	from turno, motorista
+	where turno.Nbi = motorista.Nbi and turno.Matricula = ALL(
+		select distinct matricula
+		from taxi
+	)
+)
 
 
 --h
@@ -48,22 +54,24 @@ select Nome, sum(Valor) from servico,turno,taxi,motorista
 where turno.Nbi=motorista.Nbi and turno.Matricula=taxi.Matricula and servico.Matricula=turno.Matricula and turno.Nbi=motorista.Nbi group by Nome
 
 
---j não
+--j FAZER
 
---k não
-select x.matricula,x.marca,x.modelo,max(x.dist) from(
-    select matricula,marca,modelo,(KmFim-KmInicio) as dist from turno natural join taxi natural join modelo) as x
-group by x.matricula,x.marca,x.modelo
+--k 
+SELECT 
+    x.Matricula, x.Marca, x.Modelo,x.Distance
+FROM
+    (SELECT	taxi.Matricula, modelo.Marca, taxi.Modelo, (turno.KmFim - turno.KmInicio) as Distance from turno, taxi, modelo
+    WHERE turno.Matricula = taxi.Matricula and taxi.Modelo=modelo.Modelo) as x
+WHERE
+    Distance=(SELECT max(Distance) FROM (SELECT	taxi.Matricula, modelo.Marca, taxi.Modelo, (turno.KmFim - turno.KmInicio) as Distance from turno, taxi, modelo
+    WHERE turno.Matricula = taxi.Matricula and taxi.Modelo=modelo.Modelo)as x)
+
 
 --l
 select avg(servico.DataInicio-pedido.DataInicio)
 from servico, pedido
 
---nao tou capaz
-
-
-
---m não
+--m FAZER
 select x.Nome,max(n_pedidos) from
 
     (select cliente.Nome,count(pedido.Nif) as n_pedidos from cliente,pedido
@@ -71,7 +79,7 @@ select x.Nome,max(n_pedidos) from
 
 group by x.Nome
 
---n não
+--n FAZER
 select x.Matricula,x.Modelo,x.Marca,max(VporKm) from
 
     (select taxi.Matricula,taxi.Modelo,Marca,(servico.Valor/servico.Kms) as VporKm from taxi,servico,modelo
@@ -80,7 +88,7 @@ select x.Matricula,x.Modelo,x.Marca,max(VporKm) from
 group by x.Matricula,x.Modelo,x.Marca
 
 
---o
+--o FAZER
 
---p
+--p FAZER
 
