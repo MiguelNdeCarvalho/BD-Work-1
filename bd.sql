@@ -32,8 +32,8 @@ Create table taxi(
 );
 
 Create table servico(
-    DataInicio CHAR(20),
-    DataFim CHAR(20),
+    DataInicio TIMESTAMP,
+    DataFim TIMESTAMP,
     Kms INTEGER,
     Valor FLOAT,
     Matricula CHAR(8),
@@ -43,8 +43,8 @@ Create table servico(
 );
 
 Create table turno(
-    DataInicio CHAR(20),
-    DataFim CHAR(20),
+    DataInicio TIMESTAMP,
+    DataFim TIMESTAMP,
     KmInicio INTEGER,
     KmFim INTEGER,
     Matricula CHAR(8),
@@ -66,10 +66,9 @@ Create table pedido(
     Nif BIGINT,
     MoradaInicio VARCHAR(50),
     CodigoPostalInicio VARCHAR(20),
-    DataPedido CHAR(20),
+    DataPedido TIMESTAMP,
     Matricula CHAR(8),
-    DataInicio CHAR(20),
+    DataInicio TIMESTAMP,
     foreign key (Nif) references cliente(Nif) on delete cascade,
     foreign key (Matricula) references taxi(Matricula) on delete cascade    
 );
-
