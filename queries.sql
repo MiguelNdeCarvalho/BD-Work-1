@@ -57,14 +57,14 @@ where turno.Nbi=motorista.Nbi and turno.Matricula=taxi.Matricula and servico.Mat
 --j FAZER
 
 --k 
+WITH x as (SELECT taxi.Matricula, modelo.Marca, taxi.Modelo, (turno.KmFim - turno.KmInicio) as Distance from turno, taxi, modelo
+    WHERE turno.Matricula = taxi.Matricula and taxi.Modelo=modelo.Modelo)
 SELECT 
-    x.Matricula, x.Marca, x.Modelo,x.Distance
+    matricula, marca, modelo,distance
 FROM
-    (SELECT	taxi.Matricula, modelo.Marca, taxi.Modelo, (turno.KmFim - turno.KmInicio) as Distance from turno, taxi, modelo
-    WHERE turno.Matricula = taxi.Matricula and taxi.Modelo=modelo.Modelo) as x
+    x
 WHERE
-    Distance=(SELECT max(Distance) FROM (SELECT	taxi.Matricula, modelo.Marca, taxi.Modelo, (turno.KmFim - turno.KmInicio) as Distance from turno, taxi, modelo
-    WHERE turno.Matricula = taxi.Matricula and taxi.Modelo=modelo.Modelo)as x)
+    Distance=(SELECT max(Distance) FROM x)
 
 
 --l
