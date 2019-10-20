@@ -72,12 +72,17 @@ select avg(servico.DataInicio-pedido.DataInicio)
 from servico, pedido
 
 --m FAZER
-select x.Nome,max(n_pedidos) from
+WITH x as (select cliente.Nome,count(pedido.Nif) as n_pedidos from cliente,pedido
+    where cliente.Nif=pedido.Nif group by Nome)
+SELECT 
+    nome,n_pedidos
+FROM
+    x
+WHERE
+    n_pedidos=(SELECT max(n_pedidos) FROM x)
 
-    (select cliente.Nome,count(pedido.Nif) as n_pedidos from cliente,pedido
-    where cliente.Nif=pedido.Nif group by Nome) as x 
 
-group by x.Nome
+
 
 --n FAZER
 select x.Matricula,x.Modelo,x.Marca,max(VporKm) from
