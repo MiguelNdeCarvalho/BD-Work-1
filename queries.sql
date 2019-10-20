@@ -55,10 +55,9 @@ select x.matricula,x.marca,x.modelo,max(x.dist) from(
     select matricula,marca,modelo,(KmFim-KmInicio) as dist from turno natural join taxi natural join modelo) as x
 group by x.matricula,x.marca,x.modelo
 
---l não timestamp
-
+--l
 select avg(servico.DataInicio-pedido.DataInicio)
-
+from servico, pedido
 
 --nao tou capaz
 
