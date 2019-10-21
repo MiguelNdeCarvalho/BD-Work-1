@@ -32,16 +32,31 @@ where turno.Nbi=motorista.Nbi and turno.Matricula=taxi.Matricula and taxi.Modelo
 
 --g 
 
-select distinct s.Nome
-from motorista as s, taxi, servico, modelo
-Except (
-	select Nome
-	from turno, motorista
-	where turno.Nbi = motorista.Nbi and turno.Matricula = ALL(
-		select distinct matricula
-		from taxi
-	)
-)
+select t.Nome 
+from motorista as T
+where not exists(select taxi.Matricula 
+				 from taxi 
+				 except
+                 	SELECT distinct motorista.Nome,taxi.Matricula
+FROM motorista, servico, taxi, turno
+WHERE motorista.Nbi=turno.Nbi and taxi.Matricula=servico.Matricula and servico.Matricula=taxi.Matricula and servico.Matricula=turno.Matricula 
+				)
+
+
+
+
+SELECT *
+FROM motorista, servico, taxi, turno
+WHERE motorista.Nbi=turno.Nbi and taxi.Matricula=servico.Matricula and servico.Matricula=taxi.Matricula and servico.Matricula=turno.Matricula 
+
+
+
+SELECT NuS,
+from Saio as T
+where not exists (select idBib from biblioteca)
+except (select idBib
+from requisitou > c_pbs
+where T.Nus = requisitou.Nus)
 
 
 --h
