@@ -30,8 +30,7 @@ except
 select motorista.Nome from motorista,taxi,turno,modelo
 where turno.Nbi=motorista.Nbi and turno.Matricula=taxi.Matricula and taxi.Modelo=modelo.Modelo and marca='Mercedes'
 
---g FAZER----------------------------
-
+--g 
 
 select distinct s.Nome
 from motorista as s, taxi, servico, modelo
@@ -118,16 +117,15 @@ FROM
 
 
 
---p FAZER
+--p
 
-WITH x as (1)
+WITH y as (SELECT EXTRACT(epoch FROM (servico.DataFim-servico.DataInicio)) FROM servico), 
+
+x as (SELECT motorista.Nome, servico.Kms, (servico.Kms / y.date_part) as racio FROM motorista, servico, taxi, turno, y WHERE taxi.Matricula=servico.Matricula and motorista.Nbi = turno.Nbi and turno.Matricula=servico.Matricula and turno.Matricula=taxi.Matricula)
 
 SELECT
-    x.Nome    
+    DISTINCT x.Nome, x.racio   
 FROM
-
-WHERE
-SELECT
-    x.Nome, t_Kms-
-FROM 
-    y 
+	x NATURAL JOIN y
+WHERE 
+	racio = (SELECT MAX (x.racio) FROM X)
