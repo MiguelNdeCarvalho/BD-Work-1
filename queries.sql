@@ -2,13 +2,13 @@
 
 
 --a
-select matricula from taxi,Modelo
-where taxi.Modelo=modelo.Modelo and marca='Mercedes'
+select Matricula from taxi,modelo
+where taxi.Modelo=modelo.Modelo and Marca='Mercedes'
 
 
 --b
 select Nome from turno,motorista,taxi,modelo
-where turno.Nbi=motorista.Nbi and turno.Matricula=taxi.Matricula and taxi.Modelo=modelo.Modelo and marca='Mercedes'
+where turno.Nbi=motorista.Nbi and turno.Matricula=taxi.Matricula and taxi.Modelo=modelo.Modelo and Marca='Mercedes'
 
 --c
 select Telefone from telefone,pedido,turno,motorista 
@@ -28,7 +28,7 @@ where cliente.Nif=pedido.Nif and turno.Nbi=motorista.Nbi and pedido.Matricula=tu
 select motorista.Nome from motorista
 except
 select motorista.Nome from motorista,taxi,turno,modelo
-where turno.Nbi=motorista.Nbi and turno.Matricula=taxi.Matricula and taxi.Modelo=modelo.Modelo and marca='Mercedes'
+where turno.Nbi=motorista.Nbi and turno.Matricula=taxi.Matricula and taxi.Modelo=modelo.Modelo and Marca='Mercedes'
 
 --g 
 
@@ -60,7 +60,7 @@ where T.Nus = requisitou.Nus)
 
 
 --h
-select Nome, count(Valor) from servico,turno,motorista
+select Nome, count(Valor) as N_Servicos from servico,turno,motorista
 where turno.Nbi=motorista.Nbi and servico.Matricula=turno.Matricula and turno.Nbi=motorista.Nbi group by Nome
 
 --i
