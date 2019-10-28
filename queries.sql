@@ -64,7 +64,7 @@ select Nome, count(Valor) as N_Servicos from servico,turno,motorista
 where turno.Nbi=motorista.Nbi and servico.Matricula=turno.Matricula and turno.Nbi=motorista.Nbi group by Nome
 
 --i
-select Nome, sum(Valor) from servico,turno,taxi,motorista
+select Nome, sum(Valor) as T_Valor from servico,turno,taxi,motorista
 where turno.Nbi=motorista.Nbi and turno.Matricula=taxi.Matricula and servico.Matricula=turno.Matricula and turno.Nbi=motorista.Nbi group by Nome
 
 
