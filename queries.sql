@@ -32,32 +32,15 @@ where turno.Nbi=motorista.Nbi and turno.Matricula=taxi.Matricula and taxi.Modelo
 
 --g 
 
-select t.Nome 
+select distinct t.Nome 
 from motorista as T
 where not exists(select taxi.Matricula 
 				 from taxi 
 				 except
-                 	SELECT distinct motorista.Nome,taxi.Matricula
-FROM motorista, servico, taxi, turno
-WHERE motorista.Nbi=turno.Nbi and taxi.Matricula=servico.Matricula and servico.Matricula=taxi.Matricula and servico.Matricula=turno.Matricula 
+                 SELECT taxi.Matricula
+                 FROM motorista, servico, taxi, turno
+                 WHERE motorista.Nbi=turno.Nbi and taxi.Matricula=servico.Matricula and servico.Matricula=taxi.Matricula and servico.Matricula=turno.Matricula and T.Nome=motorista.Nome
 				)
-
-
-
-
-SELECT *
-FROM motorista, servico, taxi, turno
-WHERE motorista.Nbi=turno.Nbi and taxi.Matricula=servico.Matricula and servico.Matricula=taxi.Matricula and servico.Matricula=turno.Matricula 
-
-
-
-SELECT NuS,
-from Saio as T
-where not exists (select idBib from biblioteca)
-except (select idBib
-from requisitou > c_pbs
-where T.Nus = requisitou.Nus)
-
 
 --h
 select Nome, count(Valor) as N_Servicos from servico,turno,motorista
